@@ -14,17 +14,18 @@
 <div ng-controller="MainController as main">
     <p>as easy as {{2+2}} <-- there is '\{\{2+2}}'</p>
     <p>{{main.exampleVariable}}</p>
+
     <input type="text" ng-model="main.exampleVariable">
     <input type="number" ng-model="main.a">
     <input type="number" ng-model="main.b">
-    <p>{{main.exampleVariable}}</p>
-    <p>{{main.a}}</p>
-    <p>{{main.b}}</p>
-    <p>add result {{main.a+main.b}}</p>
-    <p>sub result {{main.a-main.b}}</p>
-    <p>multi result {{main.a*main.b}}</p>
-    <p>div result {{main.a/main.b}}</p>
 
+    <p>a = {{main.a}}</p>
+    <p>b = {{main.b}}</p>
+
+    <p>add result {{main.addResult()}}</p>
+    <p>sub result {{main.subResult()}}</p>
+    <p>multi result {{main.multiResult()}}</p>
+    <p>div result {{main.divResult()}}</p>
 </div>
 
 <script type="application/javascript" src="bower_components/angular/angular.js"></script>
