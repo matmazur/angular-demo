@@ -14,34 +14,23 @@
     Angular
 </h1>
 
-<div ng-controller="CalculatorCtrl as calculator">
-    <input type="number" ng-model="calculator.a">
-    <input type="number" ng-model="calculator.b">
+<div ng-controller="MoviesCtrl as ctrl">
+    <h3>Check the box if u want to see links</h3>
+    <input type="checkbox" ng-model="ctrl.check">
+    <div ng-show="ctrl.check">
+        <a ng-href="https://www.youtube.com/watch?v={{ctrl.movies[0]}}">SOUNDGARDEN</a>
+        <a ng-href="https://www.youtube.com/watch?v={{ctrl.movies[1]}}">TOOL</a>
+        <br>
 
-    <h4>Calculator ..</h4>
-    <p>a = {{calculator.a}}</p>
-    <p>b = {{calculator.b}}</p>
-    <p>add result {{calculator.addResult()}}</p>
-    <p>sub result {{calculator.subResult()}}</p>
-    <p>multi result {{calculator.multiResult()}}</p>
-    <p>div result {{calculator.divResult()}}</p>
+    </div>
+    <div>
+        <input type="text" ng-model="ctrl.dummy">
+        <br>
+
+        <img src="{{ctrl.images[0]}}" ng-hide="ctrl.dummy">
+    </div>
 </div>
 
-<div ng-controller="HeaderController as header">
-    <input ng-model="header.newText" ng-enter="header.changeText()">
-    <button ng-click="header.toUpper()">enlarge</button>
-    <h1 ng-dblclick="header.toLower()">{{header.hardText}}</h1>
-</div>
-<div ng-controller="BackController as back">
-    <button ng-click="back.changeBackground()">change background color</button>
-    <button ng-dblclick="back.changeBackgroundToWhite()">double click to turn background white</button>
-</div>
-
-<div ng-controller="ChangeController as change" ng-init="change.changeStatus()">
-    <input type="checkbox" ng-model="change.checkbox" ng-change="change.changeStatus()" ng-checked="true">
-    <p>{{change.status}}</p>
-
-</div>
 
 <script type="application/javascript" src="bower_components/angular/angular.js"></script>
 <script type="application/javascript" src="js/app.js"></script>
