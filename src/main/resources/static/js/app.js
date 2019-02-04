@@ -9,11 +9,19 @@ app.controller("MoviesCtrl", function(){
 });
 
 
-app.controller("ShowHideCtrl", function(){
+function Person(name,surname){
+    this.name=name;
+    this.surname=surname;
+}
 
+app.controller("RepeatCtrl", function(){
+
+    this.people = [
+        new Person("Jack","Black"),
+        new Person("Kelly","Kapoor"),
+        new Person("Martin","Scorsese")
+    ]
 });
-
-
 
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
