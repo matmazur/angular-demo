@@ -27,6 +27,27 @@ app.controller("HeaderController", function () {
     this.hardText = "Welcome to the jungle";
     this.newText = "";
 
+
+    this.toUpper = function () {
+        this.hardText = this.hardText.toUpperCase();
+    };
+
+    this.toLower = function () {
+        this.hardText = this.hardText.toLowerCase();
+    };
+
+    this.changeText = function () {
+
+        if (this.newText) {
+            this.hardText = this.newText;
+        }
+        if (this.newText === "") {
+            this.hardText = "Welcome to the jungle";
+        }
+    };
+});
+
+app.controller("BackController", function () {
     this.changeBackground = function () {
 
         var body = document.getElementsByTagName("body")[0];
@@ -47,24 +68,25 @@ app.controller("HeaderController", function () {
         var body = document.getElementsByTagName("body")[0];
         body.style.backgroundColor = "white";
     };
+});
 
-    this.toUpper = function () {
-        this.hardText = this.hardText.toUpperCase();
-    };
+app.controller("ChangeController", function () {
 
-    this.toLower = function () {
-        this.hardText = this.hardText.toLowerCase();
-    };
+    this.status = "unchecked";
+    this.checkbox = true;
 
-    this.changeText = function () {
+    this.changeStatus = function () {
 
-        if (this.newText) {
-            this.hardText = this.newText;
+        console.log(this.status);
+        console.log(this.checkbox);
+
+        if (this.checkbox) {
+            this.status = "checked";
+        } else {
+            this.status = "unchecked";
         }
-        if (this.newText==="") {
-            this.hardText = "Welcome to the jungle";
-        }
     };
+
 });
 
 app.directive('ngEnter', function () {
@@ -79,3 +101,4 @@ app.directive('ngEnter', function () {
         });
     };
 });
+
