@@ -72,6 +72,9 @@ app.controller("BackController", function () {
 
 app.controller("ChangeController", function () {
 
+    console.log(this.status);
+    console.log(this.checkbox);
+
     this.status = "unchecked";
     this.checkbox = true;
 
