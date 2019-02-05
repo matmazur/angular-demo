@@ -1,43 +1,43 @@
 var app = angular.module('app', []);
 
-app.controller("MoviesCtrl", function () {
 
-    this.dummy = "delete this text to see the picture";
-    this.movies = ['JvqQY6b5IbA', 'MRwWucCZpLg'];
-    this.images =
-        ['http://images6.fanpop.com/image/photos/39400000/Everybody-Wants-Some-Logo-everybody-wants-some-39453890-500-281.jpg']
-});
+var reg = 1;
 
-
-function Person(name, surname) {
-    this.name = name;
-    this.surname = surname;
+function Book(title, author, isbn) {
+    this.id = reg;
+    this.title = title;
+    this.author = author;
+    this.isbn = isbn;
+    reg++;
 }
 
-app.controller("RepeatCtrl", function () {
 
-    this.people = [
-        new Person("Jack", "Black"),
-        new Person("Kelly", "Kapoor"),
-        new Person("Martin", "Scorsese")
+app.controller("BookCtrl", function () {
+
+    this.books = [
+        new Book("Fight Club", "Chuck Palahniuk", "4765476"),
+        new Book("Bible", "few good lads", "1"),
+        new Book("Breakfast Club", "Some Bloke", "321321765476")
     ];
-    this.odd = "odd";
-    this.even = "even";
-});
 
 
-app.controller("HeaderCtrl", function () {
+    this.formTitle = "";
+    this.formAuthor = "";
+    this.formIsbn = "";
+    this.id=0;
 
-    this.changeStyle = function () {
-        this.changeHeader = {
-            'color': 'blue',
-            'font-size': '25px'
-        };
+    this.addBook = function () {
+        if (this.formTitle && this.formAuthor && this.formIsbn) {
+            this.books.push(new Book(this.formTitle, this.formAuthor, this.formIsbn));
+            this.formTitle = "";
+            this.formAuthor = "";
+            this.formIsbn = "";
+        } else
+            alert("missing data");
+    }
+})
+;
 
-    };
-
-
-});
 
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {

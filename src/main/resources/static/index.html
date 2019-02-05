@@ -15,40 +15,29 @@
     Angular
 </h1>
 
-<div ng-controller="HeaderCtrl as ctrl">
-    <h1 ng-style="ctrl.changeHeader" ng-click="ctrl.changeStyle()">This is a header</h1>
-    <button>label</button>
-</div>
+<div ng-controller="BookCtrl as ctrl">
 
+    <h2>Add book</h2>
+    <input type="text" ng-model="ctrl.formTitle" placeholder="title"><br>
+    <input type="text" ng-model="ctrl.formAuthor" placeholder="author"><br>
+    <input type="text" ng-model="ctrl.formIsbn" placeholder="isbn"><br>
+    <button ng-click="ctrl.addBook()">Add book</button>
 
-<div ng-controller="MoviesCtrl as ctrl">
-    <h3>Check the box if u want to see links</h3>
-    <input type="checkbox" ng-model="ctrl.check">
-    <div ng-show="ctrl.check">
-        <a ng-href="https://www.youtube.com/watch?v={{ctrl.movies[0]}}">SOUNDGARDEN</a>
-        <a ng-href="https://www.youtube.com/watch?v={{ctrl.movies[1]}}">TOOL</a>
-        <br>
-
-    </div>
-    <div>
-        <input type="text" ng-model="ctrl.dummy">
-        <br>
-
-        <img src="{{ctrl.images[0]}}" ng-hide="ctrl.dummy">
-    </div>
-</div>
-
-<div ng-controller="RepeatCtrl as ctrl">
     <table border="1">
         <thead>
-        <th>name</th>
-        <th>surname</th>
+        <th>id</th>
+        <th>title</th>
+        <th>author</th>
+        <th>isbn</th>
         </thead>
-
-        <tr ng-repeat="p in ctrl.people" ng-class-even="ctrl.even" ng-class-odd="ctrl.odd">
-            <td>{{p.name}}</td>
-            <td>{{p.surname}}</td>
+        <tbody>
+        <tr ng-repeat="b in ctrl.books">
+            <td>{{b.id}}</td>
+            <td>{{b.title}}</td>
+            <td>{{b.author}}</td>
+            <td>{{b.isbn}}</td>
         </tr>
+        </tbody>
     </table>
 </div>
 
