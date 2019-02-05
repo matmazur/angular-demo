@@ -18,10 +18,10 @@
 <div ng-controller="BookCtrl as ctrl">
 
     <h2>Add book</h2>
-    <input type="text" ng-model="ctrl.formTitle" placeholder="title"><br>
-    <input type="text" ng-model="ctrl.formAuthor" placeholder="author"><br>
-    <input type="text" ng-model="ctrl.formIsbn" placeholder="isbn"><br>
-    <button ng-click="ctrl.addBook()">Add book</button>
+    <input type="text" ng-model="ctrl.book.title" placeholder="title"><br>
+    <input type="text" ng-model="ctrl.book.author" placeholder="author"><br>
+    <input type="text" ng-model="ctrl.book.isbn" placeholder="isbn"><br>
+    <button ng-click="ctrl.addBook(ctrl.book)">Add book</button>
 
     <table border="1">
         <thead>

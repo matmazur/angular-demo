@@ -1,18 +1,21 @@
 var app = angular.module('app', []);
 
+app.factory("Book", function () {
+    var reg = 1;
 
-var reg = 1;
+    function Book(title, author, isbn) {
+        this.id = reg;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        reg++;
+    }
 
-function Book(title, author, isbn) {
-    this.id = reg;
-    this.title = title;
-    this.author = author;
-    this.isbn = isbn;
-    reg++;
-}
+    return Book;
+});
 
 
-app.controller("BookCtrl", function () {
+app.controller("BookCtrl", function (Book) {
 
     this.books = [
         new Book("Fight Club", "Chuck Palahniuk", "4765476"),
@@ -20,20 +23,31 @@ app.controller("BookCtrl", function () {
         new Book("Breakfast Club", "Some Bloke", "321321765476")
     ];
 
+    this.book = {};
+    this.addBook = function (book) {
+        console.log(book);
 
-    this.formTitle = "";
-    this.formAuthor = "";
-    this.formIsbn = "";
-    this.id=0;
+        if (book.title && book.author && book.isbn) {
+            this.books.push(new Book(book.title, book.author, book.isbn));
 
-    this.addBook = function () {
-        if (this.formTitle && this.formAuthor && this.formIsbn) {
-            this.books.push(new Book(this.formTitle, this.formAuthor, this.formIsbn));
-            this.formTitle = "";
-            this.formAuthor = "";
-            this.formIsbn = "";
-        } else
-            alert("missing data");
+            this.book.title = "";
+            this.book.author = "";
+            this.book.isbn = "";
+
+        } else {
+            var error = "";
+
+            if (!book.title) {
+                error += "Missing title\n"
+            }
+            if (!book.author) {
+                error += "Missing author\n"
+            }
+            if (!book.isbn) {
+                error += "Missing isbn\n"
+            }
+            alert(error);
+        }
     }
 })
 ;
