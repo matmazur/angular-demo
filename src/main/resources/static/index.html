@@ -15,12 +15,14 @@
     Angular
 </h1>
 
-<div ng-controller="BookCtrl as ctrl">
+
+<div ng-controller="BookCtrl as ctrl" ng-init="ctrl.setStuff()">
+
 
     <h2>Add book</h2>
-    <input type="text" ng-model="ctrl.book.title" placeholder="title"><br>
+    <input type="text" ng-model="ctrl.book.title" placeholder="title" id="mark"><br>
     <input type="text" ng-model="ctrl.book.author" placeholder="author"><br>
-    <input type="text" ng-model="ctrl.book.isbn" placeholder="isbn"><br>
+    <input type="text" ng-model="ctrl.book.isbn" placeholder="isbn" ng-enter="ctrl.addBook(ctrl.book)"><br>
     <button ng-click="ctrl.addBook(ctrl.book)">Add book</button>
 
     <table border="1">

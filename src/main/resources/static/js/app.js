@@ -15,7 +15,7 @@ app.factory("Book", function () {
 });
 
 
-app.controller("BookCtrl", function (Book) {
+app.service("BookService", function (Book) {
 
     this.books = [
         new Book("Fight Club", "Chuck Palahniuk", "4765476"),
@@ -23,17 +23,12 @@ app.controller("BookCtrl", function (Book) {
         new Book("Breakfast Club", "Some Bloke", "321321765476")
     ];
 
-    this.book = {};
-    this.addBook = function (book) {
+    this.saveBook = function (book) {
         console.log(book);
 
         if (book.title && book.author && book.isbn) {
             this.books.push(new Book(book.title, book.author, book.isbn));
-
-            this.book.title = "";
-            this.book.author = "";
-            this.book.isbn = "";
-
+            return true;
         } else {
             var error = "";
 
@@ -49,9 +44,22 @@ app.controller("BookCtrl", function (Book) {
             alert(error);
         }
     }
-})
-;
+});
 
+app.controller("BookCtrl", function (Book, BookService) {
+
+    this.books = BookService.books;
+    this.book = {};
+
+    this.addBook = function (book) {
+        if (BookService.saveBook(book)) {
+
+            this.book.title = "";
+            this.book.author = "";
+            this.book.isbn = "";
+        }
+    }
+});
 
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
@@ -65,4 +73,5 @@ app.directive('ngEnter', function () {
         });
     };
 });
+
 
