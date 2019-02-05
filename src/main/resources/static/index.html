@@ -16,15 +16,14 @@
 </h1>
 
 
-<div ng-controller="BookCtrl as ctrl" ng-init="ctrl.setStuff()">
+<div ng-controller="BookCtrl as ctrl">
 
 
     <h2>Add book</h2>
-    <input type="text" ng-model="ctrl.book.title" placeholder="title" id="mark"><br>
-    <input type="text" ng-model="ctrl.book.author" placeholder="author"><br>
+    <input type="text" ng-model="ctrl.book.title" placeholder="title" ng-enter="ctrl.addBook(ctrl.book)" id="mark"><br>
+    <input type="text" ng-model="ctrl.book.author" placeholder="author" ng-enter="ctrl.addBook(ctrl.book)"><br>
     <input type="text" ng-model="ctrl.book.isbn" placeholder="isbn" ng-enter="ctrl.addBook(ctrl.book)"><br>
     <button ng-click="ctrl.addBook(ctrl.book)">Add book</button>
-
     <table border="1">
         <thead>
         <th>id</th>
@@ -44,7 +43,9 @@
 </div>
 
 
+<script type="application/javascript" src="js/misc.js"></script>
 <script type="application/javascript" src="bower_components/angular/angular.js"></script>
 <script type="application/javascript" src="js/app.js"></script>
+<script>setCaretPosition("mark", 0)</script>
 
 </body>

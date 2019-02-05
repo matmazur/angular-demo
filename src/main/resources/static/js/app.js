@@ -1,14 +1,14 @@
 var app = angular.module('app', []);
 
-app.factory("Book", function () {
-    var reg = 1;
+app.value("id", 1);
 
+app.factory("Book", function (id) {
     function Book(title, author, isbn) {
-        this.id = reg;
+        this.id = id;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        reg++;
+        id++;
     }
 
     return Book;
@@ -57,8 +57,9 @@ app.controller("BookCtrl", function (Book, BookService) {
             this.book.title = "";
             this.book.author = "";
             this.book.isbn = "";
+            setCaretPosition("mark", 0);
         }
-    }
+    };
 });
 
 app.directive('ngEnter', function () {
@@ -73,5 +74,3 @@ app.directive('ngEnter', function () {
         });
     };
 });
-
-
