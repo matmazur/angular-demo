@@ -15,6 +15,27 @@
     Angular
 </h1>
 
+<div ng-controller="ProductCtrl as ctrl">
+
+    <table border="1">
+        <thead>
+        <th>id</th>
+        <th>name</th>
+        <th>pruducer</th>
+        <th>price</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in ctrl.products">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.producer}}</td>
+            <td>{{p.price}}</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 
 <script type="application/javascript" src="js/misc.js"></script>
 <script type="application/javascript" src="bower_components/angular/angular.js"></script>
