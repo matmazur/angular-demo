@@ -17,6 +17,13 @@
 
 <div ng-controller="ProductCtrl as ctrl">
 
+    <h2>Add product to the database</h2>
+    <input type="text" ng-model="ctrl.product.name" placeholder="name">
+    <input type="text" ng-model="ctrl.product.producer" placeholder="producer">
+    <input type="number" ng-model="ctrl.product.price" placeholder="price">
+    <button ng-click="ctrl.addProduct(ctrl.product)">add product</button>
+
+    <hr>
     <table border="1">
         <thead>
         <th>id</th>
