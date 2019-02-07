@@ -5,14 +5,15 @@ import com.matmazur.angulardemo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
-
-@RestController("/api/products")
+@RestController
+@RequestMapping("/api/products")
 public class ProductController {
 
     private final
@@ -45,4 +46,17 @@ public class ProductController {
         return ResponseEntity.ok(p);
     }
 
+    @PostMapping
+    public ResponseEntity<?> addProduct(@RequestBody Product product){
+
+        Product managed = repository.save(product);
+
+        URI location  = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id")
+                .buildAndExpand(managed.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
+    }
 }
