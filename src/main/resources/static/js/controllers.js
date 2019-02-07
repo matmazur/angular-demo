@@ -17,5 +17,16 @@ angular.module('app')
                 )
         }
 
+        function addData(product) {
+            $http.post('/api/products', product)
+                .then(function success(response) {
+                        refreshData();
+                        vm.product = {};
+                    }, function error(response) {
+                        console.log('API failed with status ' + response.status);
+                    }
+                )
+        }
+
         refreshData();
     });
