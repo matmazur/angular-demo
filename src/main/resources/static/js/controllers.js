@@ -2,20 +2,19 @@ angular.module('app')
     .constant("appName", "restTestingApp")
 
 
-    .controller("ProductCtrl", function ($http) {
+    .controller("ProductCtrl", function ($http, ProductService) {
 
         var vm = this;
 
 
         function refreshData() {
-            $http.get('/api/products')
-                .then(function success(response) {
-                        vm.products = response.data;
-                        console.log(vm.products);
-                    }, function error(response) {
-                        console.log('API failed with status ' + response.status);
-                    }
-                )
+
+            var productsPromise = ProductService.getAll();
+            productsPromise.then(function (data) {
+                vm.products = data.data;
+            });
+
+            console.log(vm.products)
         }
 
 
