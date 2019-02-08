@@ -1,21 +1,18 @@
-angular.module('app')
+angular.module('app', ['ngResource'])
     .constant("appName", "restTestingApp")
 
 
-    .controller("ProductCtrl", function ($http) {
+    .controller("ProductCtrl", function ($http, $resource) {
 
         var vm = this;
+        var productsResult = $resource("/api/products");
 
         function refreshData() {
-            $http.get('/api/products')
-                .then(function success(response) {
-                        vm.products = response.data;
-                        console.log(vm.products);
-                    }, function error(response) {
-                        console.log('API failed with status ' + response.status);
-                    }
-                );
+            vm.products = productsResult.query();
+            console.log(vm.products);
         }
+
+        console.log(vm.products);
 
 
         vm.product = {};
