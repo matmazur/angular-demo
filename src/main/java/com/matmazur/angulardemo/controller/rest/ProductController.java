@@ -47,16 +47,16 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addProduct(@RequestBody Product product){
+    public ResponseEntity<?> addProduct(@RequestBody Product product) {
 
         Product managed = repository.save(product);
 
-        URI location  = ServletUriComponentsBuilder
+        URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id")
                 .buildAndExpand(managed.getId())
                 .toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(managed);
     }
 }
