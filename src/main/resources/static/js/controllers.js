@@ -1,41 +1,47 @@
 angular.module('app', ['ngResource'])
     .constant("appName", "restTestingApp")
 
+    .factory("Product", function () {
+
+        function Product(name, producer, price) {
+            this.name = name;
+            this.producer = producer;
+            this.price = price;
+        }
+
+        return Product;
+    })
 
     .controller("ProductCtrl", function ($http, $resource) {
 
         var vm = this;
-        var productsResult = $resource("/api/products/:productId");
+        var Product = $resource("/api/products/:productId");
+        vm.product = new Product();
 
 
         function refreshData() {
-            vm.products = productsResult.query();
+            vm.products = Product.query();
             console.log(vm.products);
         }
 
         vm.getById = function (id) {
             if (id) {
-                vm.productById = productsResult.get({productId: id});
-            }
-            else {
+                vm.productById = Product.get({productId: id});
+            } else {
                 vm.productById = null;
             }
         };
 
         console.log(vm.products);
 
-
         this.addProduct = function (product) {
 
             if (product.name && product.producer && product.price) {
-                $http.post('/api/products', product)
-                    .then(function success(response) {
-                            refreshData();
-                            vm.product = {};
-                        }, function error(response) {
-                            console.log('API failed with status ' + response.status);
-                        }
-                    )
+                console.log(vm.product.__proto__);
+                vm.product.$save(function (data) {
+                    refreshData();
+                    vm.product = new Product();
+                });
             } else {
                 var errorText = "";
                 if (!product.name) {
