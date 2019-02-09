@@ -37,10 +37,16 @@
             <td>{{p.name}}</td>
             <td>{{p.producer}}</td>
             <td>{{p.price}}</td>
-
         </tr>
         </tbody>
     </table>
+
+    <br>
+    <p>Type in id to get particular product and press enter</p>
+    <input type="number" ng-model="ctrl.id" ng-enter="ctrl.getById(ctrl.id)">
+    <ul ng-if="ctrl.productById">
+        <li>{{ctrl.productById}}</li>
+    </ul>
 
 </div>
 

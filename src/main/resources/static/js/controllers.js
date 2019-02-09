@@ -5,17 +5,26 @@ angular.module('app', ['ngResource'])
     .controller("ProductCtrl", function ($http, $resource) {
 
         var vm = this;
-        var productsResult = $resource("/api/products");
+        var productsResult = $resource("/api/products/:productId");
+
 
         function refreshData() {
             vm.products = productsResult.query();
             console.log(vm.products);
         }
 
+        vm.getById = function (id) {
+            if (id) {
+                vm.productById = productsResult.get({productId: id});
+            }
+            else {
+                vm.productById = null;
+            }
+        };
+
         console.log(vm.products);
 
 
-        vm.product = {};
         this.addProduct = function (product) {
 
             if (product.name && product.producer && product.price) {
@@ -42,4 +51,5 @@ angular.module('app', ['ngResource'])
             }
         };
         refreshData();
-    });
+    })
+;
