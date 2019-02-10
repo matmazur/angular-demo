@@ -32,7 +32,6 @@ angular.module('app', ['ngResource'])
             }
         };
 
-        console.log(vm.products);
 
         this.addProduct = function (product) {
 
@@ -40,9 +39,11 @@ angular.module('app', ['ngResource'])
                 console.log(vm.product.__proto__);
                 vm.product.$save(function (data) {
                     refreshData();
-                    vm.product = new Product();
+                    vm.product = new Product;
                 });
-            } else {
+
+            }
+            else {
                 var errorText = "";
                 if (!product.name) {
                     errorText += "fill name field\n";
