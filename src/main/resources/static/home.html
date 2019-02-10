@@ -28,15 +28,15 @@
         <thead>
         <th>id</th>
         <th>name</th>
-        <th>pruducer</th>
+        <th>producer</th>
         <th>price</th>
         </thead>
         <tbody>
         <tr ng-repeat="p in ctrl.products"
-            ng-mouseenter="ctrl.getById(p.id)"
-            ng-mouseleave="ctrl.productById=null">
-        <!--ng-click="ctrl.getById(p.id)"-->
-        <!--ng-dblclick="ctrl.productById=null"-->
+            ng-click="ctrl.getById(p.id)"
+            ng-mouseleave="ctrl.clear()">
+            <!--ng-mouseenter="ctrl.getById(p.id)"-->
+            <!--ng-dblclick="ctrl.productById=null"-->
             <td>{{p.id}}</td>
             <td>{{p.name}}</td>
             <td>{{p.producer}}</td>
@@ -52,7 +52,6 @@
         <li>{{ctrl.productById}}</li>
     </ul>
     <hr>
-
 
 </div>
 

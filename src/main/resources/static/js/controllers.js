@@ -1,18 +1,7 @@
 angular.module('app', ['ngResource'])
     .constant("appName", "restTestingApp")
 
-    .factory("Product", function () {
-
-        function Product(name, producer, price) {
-            this.name = name;
-            this.producer = producer;
-            this.price = price;
-        }
-
-        return Product;
-    })
-
-    .controller("ProductCtrl", function ($http, $resource) {
+    .controller("ProductCtrl", function ($http, $resource, $timeout) {
 
         var vm = this;
         var Product = $resource("/api/products/:productId");
@@ -33,7 +22,14 @@ angular.module('app', ['ngResource'])
         };
 
 
-        this.addProduct = function (product) {
+        vm.clear = function () {
+            $timeout(function () {
+                vm.productById = null;
+            }, 3000);
+
+        };
+
+        vm.addProduct = function (product) {
 
             if (product.name && product.producer && product.price) {
                 console.log(vm.product.__proto__);
