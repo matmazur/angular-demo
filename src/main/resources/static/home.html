@@ -35,8 +35,6 @@
         <tr ng-repeat="p in ctrl.products"
             ng-click="ctrl.getById(p.id)"
             ng-mouseleave="ctrl.clear()">
-            <!--ng-mouseenter="ctrl.getById(p.id)"-->
-            <!--ng-dblclick="ctrl.productById=null"-->
             <td>{{p.id}}</td>
             <td>{{p.name}}</td>
             <td>{{p.producer}}</td>
@@ -58,12 +56,10 @@
 <script type="application/javascript" src="js/misc.js"></script>
 <script type="application/javascript" src="bower_components/angular/angular.js"></script>
 <script type="application/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+<script type="application/javascript" src="bower_components/angular-route/angular-route.js"></script>
 
 <script type="application/javascript" src="js/app.js"></script>
-<script type="application/javascript" src="js/factories.js"></script>
 <script type="application/javascript" src="js/controllers.js"></script>
-<script type="application/javascript" src="js/services.js"></script>
 <script type="application/javascript" src="js/directives.js"></script>
-
 
 </body>

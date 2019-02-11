@@ -1,4 +1,4 @@
-angular.module('app', ['ngResource'])
+angular.module('app', ['ngResource', 'ngRoute'])
     .constant("appName", "restTestingApp")
 
     .controller("ProductCtrl", function ($http, $resource, $timeout) {
@@ -6,7 +6,6 @@ angular.module('app', ['ngResource'])
         var vm = this;
         var Product = $resource("/api/products/:productId");
         vm.product = new Product();
-
 
         function refreshData() {
             vm.products = Product.query();
@@ -20,7 +19,6 @@ angular.module('app', ['ngResource'])
                 vm.productById = null;
             }
         };
-
 
         vm.clear = function () {
             $timeout(function () {
@@ -54,5 +52,4 @@ angular.module('app', ['ngResource'])
             }
         };
         refreshData();
-    })
-;
+    });
